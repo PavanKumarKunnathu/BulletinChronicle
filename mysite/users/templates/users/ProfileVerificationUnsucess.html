@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Profile Verification</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
+  border-radius: 5px 5px 0 0;
+}
+    </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body >
+{% load static %}
+
+
+<div class="container">
+ <center><h1>Profile Verification</h1></center>
+    </br>
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4">
+            <div class="card" style="border:3px  solid red;">
+<!--                <img src={{users_data.photo.url}} alt="image" style="width:100%;">-->
+                    <img src={{users_data.photo.url}}  alt="image" style="width:100%;height:350px;">
+                <div class="container">
+                    <h4><b>profile picture</b></h4>
+                    <p>Given From User</p>
+                </div>
+            </div>
+        </div>
+        {% if posts_data %}
+            <div class="col-4">
+            <div class="card" style="border:2px  solid green;">
+                <img src="{{posts_data.webcampic.url}}"  alt="image" style="width:100%;height:350px;">
+                <div class="container">
+                    <h4><b>Cv2 Profile</b></h4>
+                    <p>Taken From System</p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+            <div class="col-4">
+            <div class="card" style="border:2px  solid green;">
+                <img src="{{users_data.webcampic.url}}"  alt="image" style="width:100%;height:350px;">
+                <div class="container">
+                    <h4><b>Cv2 Profile</b></h4>
+                    <p>Taken From System</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    </br>
+    <div class="row" >
+        <div class="card" style="postion:center;margin-left:40%;margin-top:10px;">
+        <div class="card-header">
+            <card-title ><font color="red"><h1>Not Matched</h1></font></card-title>
+        </div>
+    </div>
+    </div>
+
+</div>
+
+
+</div>
+
+{% if message %}
+<center><p>sorry,you are not an <b>unauthorised person</b>.please logout otherwise <b>{{users_data.username}}</b> will take Action Against you <a href="{% url 'socialproblemsNews'  %}">Logout</a></p></center>
+
+{% else %}
+     <center><p >Profile Not Matched .please click link to Re-Register <a href="{% url 'login'  %}">Re-Register</a></p></center>
+{% endif %}
+</body>
+</html>

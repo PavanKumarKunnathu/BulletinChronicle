@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bulletin Chronicle</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Bootstrap Ecommerce Template" name="keywords">
+        <meta content="Bootstrap Ecommerce Template Free Download" name="description">
+
+        {% load static %}
+        <!-- Favicon -->
+<!--        <link href="img/favicon.ico" rel="icon">-->
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link  type="text/css" rel="stylesheet" href="{% static 'lib/slick/slick.css' %}" >
+        <link  type="text/css" rel="stylesheet" href="{% static 'lib/slick/slick-theme.css' %}" >
+<!--        <link href="lib/slick/slick.css" rel="stylesheet">-->
+<!--        <link href="lib/slick/slick-theme.css" rel="stylesheet">-->
+
+
+        <!-- Template Stylesheet -->
+        <link  type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+<!--        <link href="css/style.css" rel="stylesheet">-->
+    </head>
+
+    <body>
+        <!-- Top Header Start -->
+            <div class="top-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="logo">
+                            <a href="">
+                                <img src="{% static 'img/logo1.png' %}"  style="width:230px;" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4">
+                        <div class="search">
+                            <input type="text" placeholder="Search">
+                            <button><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <div class="social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook"></i></a>
+                            <a href=""><i class="fab fa-linkedin"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Header End -->
+
+
+        <!-- Header Start -->
+            <div class="header">
+            <div class="container">
+                <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                    <a href="#" class="navbar-brand">MENU</a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav m-auto">
+                            <a href="{% url 'index'   %}"  class="nav-item nav-link active">Home</a>
+                            <a  href="{% url 'sportsNews'   %}"  class="nav-item nav-link">Sports</a>
+                            <a href="{% url 'technologyNews'   %}" class="nav-item nav-link">Technology</a>
+                            <a href="{% url 'businessNews'   %}" class="nav-item nav-link">Business</a>
+                            <a href="{% url 'educationNews'   %}" class="nav-item nav-link">Education</a>
+                            <a href="{% url 'entertainmentNews'   %}" class="nav-item nav-link">Entertainment</a>
+                            <a href="{% url 'socialproblemsNews'   %}" class="nav-item nav-link">Social Problems</a>
+
+
+
+                            {% if users_details %}
+                            <div class="nav-item dropdown"  >
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" >Hi, {{users_details.username}}</a>
+                                <div class="dropdown-menu">
+                                    <a href="{%  url 'user_notifications' %}" class="dropdown-item">Notifications</a>
+                                    <a href="{% url 'logout'   %}" class="dropdown-item">Logout</a>
+
+                                </div>
+                            </div>
+                            {% else %}
+                                <a href="{% url 'login'   %}" class="nav-item nav-link">Signup/Login</a>
+                            {% endif %}
+
+                            {% if notifications %}
+                                <a href="{%  url 'user_notifications' %}" class="nav-item nav-link"><button type="button" >
+                                      Notifications <span class="badge badge-success">{{notifications | length }}</span>
+                                    </button></a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Header End -->
+
+
+        <!-- Top News Start-->
+           <div class="top-news">
+            <div class="container-fluid">
+                <div class="row">
+                    {% for i in mainpage %}
+                    <div class="col-md-6 tn-left">
+                        <div class="tn-img">
+                            <img src="{{i.image.url}}"  alt="{{i.caption}}" style="height:485px;">
+                            <div class="tn-content">
+                                <div class="tn-content-inner">
+                                    <a class="tn-date" href="{% url 'technology' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                            <a class="tn-title" href="{% url 'technology' i.id %}">{{i.title}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="col-md-6 tn-right">
+                        <div class="row">
+                            {% for i in flash_news %}
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img src="{{i.image.url}}"  alt="{{i.caption}}" style="height:228px;" >
+                                    <div class="tn-content">
+                                        <div class="tn-content-inner">
+                                            <a class="tn-date" href="{% url 'sports' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                            <a class="tn-title" href="{% url 'sports' i.id %}">{{i.title}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+                            {% for i in flash_news_2 %}
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img src="{{i.image.url}}"  alt="{{i.caption}}" style="height:228px;" >
+                                    <div class="tn-content">
+                                        <div class="tn-content-inner">
+                                            <a class="tn-date" href="{% url 'education' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                            <a class="tn-title" href="{% url 'education' i.id %}">{{i.title}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top News End-->
+<!--cn-slider slick-initialized slick-slider-->
+
+        <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Sports</h2>
+                        <div class="row cn-slider ">
+                            {% for i in sports %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{i.image.url}}" class="img-fluid" alt="{{i.caption}}">
+                                    <div class="cn-content">
+                                        <div class="cn-content-inner">
+
+                                            <a class="cn-date" href="{% url 'sports' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                            <a class="cn-title" href="{% url 'sports' i.id %}">{{i.title}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Technology</h2>
+                        <div class="row cn-slider">
+                            {% for i in technology %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{i.image.url}}" class="img-fluid" alt="{{i.caption}}">
+                                    <div class="cn-content">
+                                        <div class="cn-content-inner">
+                                            <a class="cn-date" href="{% url 'technology' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                            <a class="cn-title" href="{% url 'technology' i.id %}">{{i.title}}</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+
+        <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Business</h2>
+                        <div class="row cn-slider">
+                            {% for i in business %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{i.image.url}}" class="img-fluid" alt="{{i.caption}}">
+                                    <div class="cn-content">
+                                        <div class="cn-content-inner">
+                                           <a class="cn-date" href="{% url 'business' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                            <a class="cn-title" href="{% url 'business' i.id %}">{{i.title}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Education</h2>
+                        <div class="row cn-slider">
+                            {% for i in education %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{i.image.url}}" class="img-fluid" alt="{{i.caption}}">
+                                    <div class="cn-content">
+                                        <div class="cn-content-inner">
+                                            <a class="cn-date" href="{% url 'education' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                            <a class="cn-title" href="{% url 'education' i.id %}">{{i.title}}</a>
+                                           </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+        <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Entertainment</h2>
+                        <div class="row cn-slider">
+                            {% for i in entertainment %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{i.image.url}}" class="img-fluid" alt="{{i.caption}}">
+                                    <div class="cn-content">
+                                        <div class="cn-content-inner">
+                                          <a class="cn-date" href="{% url 'entertainment' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                            <a class="cn-title" href="{% url 'entertainment' i.id %}">{{i.title}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Social Problems</h2>
+                        <div class="row cn-slider">
+                            {% for i in socialproblems %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{i.photo.url}}" class="img-fluid" alt="{{i.caption}}">
+                                    <div class="cn-content">
+                                        <div class="cn-content-inner">
+                                           <a class="cn-date" href="{% url 'socialproblems' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                            <a class="cn-title" href="{% url 'socialproblems' i.id %}">{{i.title}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+
+        <!-- Main News Start-->
+
+        <!-- Main News End-->
+
+
+        <!-- Footer Start -->
+         <div class="footer-bottom">
+            <div class="container">
+                <center><p style="color:silver;">@Bulletin Chronicle Team</p></center>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+
+
+
+        <!-- Back to Top -->
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+        <script src="{% static 'lib/slick/slick.min.js' %}"></script>
+
+
+        <!--
+        js files
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/slick/slick.min.js"></script>
+
+        <script src="js/main.js"></script>
+        -->
+        <!-- Template Javascript -->
+        <script src="{% static 'js/main.js' %}"></script>
+
+    </body>
+</html>

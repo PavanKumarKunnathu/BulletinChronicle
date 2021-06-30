@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Add Post</title>
+		{% load static %}
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="colorlib.com">
+         <link  type="text/css" href="{% static 'css/poststyle.css' %}" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			.circular--portrait {
+			  position: relative;
+			  width: 150px;
+			  height: 150px;
+			  overflow: hidden;
+			  border-radius: 50%;
+			  border:1px solid black;
+			}
+
+			.circular--portrait img {
+			  width: 100%;
+			  height: auto;
+			}
+		</style>
+<script type="text/javascript">
+	    function triggerclick() {
+    document.querySelector("#profileimage").click();
+    }
+    function displayimage(e) {
+
+        var filesize = e.files[0].size / 1024 / 1024;
+
+
+        var x=document.getElementById("profileimage").value;
+        var sp=x.split(".");
+
+        if(sp[1]=='png' || sp[1]=='jpg' || sp[1]=='jpeg' || sp[1]=='PNG' || sp[1]=='JPEG' || sp[1]=='JPG'){
+            if (filesize < 8) {
+
+                     if (e.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            document.querySelector("#profileDisplay").setAttribute('src', e.target.result);
+                        }
+                        reader.readAsDataURL(e.files[0]);
+                      }
+                     document.getElementById("imageprofile").innerHTML="";
+                     return true;
+
+            }
+            else{document.getElementById("imageprofile").innerHTML="Image must be less than 8MB";
+            return false;
+            }
+
+            }
+
+
+    else{
+        document.getElementById("imageprofile").innerHTML="Please choose png or jpg or jpeg file.";
+        return false;
+
+    }
+
+}
+</script>
+		<script>
+			function validatepost(){
+			var image=document.getElementById('profileimage').value;
+			var title=document.getElementById('title').value;
+			var location=document.getElementById('location').value;
+			var issuedate=document.getElementById('issuedate').value;
+			var description=document.getElementById('description').value;
+			var k=0;
+			if(image.length==0){
+				document.getElementById("imageprofile").innerHTML="Please Insert Image.";
+				k=1;
+			}
+			else if(displayimage(image)==false){
+			alert(displayimage(image));
+				k=1;}
+			else{
+
+				document.getElementById("imageprofile").innerHTML="";
+			}
+			if(title.length==0){
+				document.getElementById("title_error").innerHTML="Please Enter Title.";
+				k=1;
+			}
+			else{
+				document.getElementById("title_error").innerHTML="";
+			}
+			if(location.length==0){
+				document.getElementById("location_error").innerHTML="Please Enter Location.";
+				k=1;
+			}
+			else{
+				document.getElementById("location_error").innerHTML="";
+			}
+			if(issuedate.length==0){
+				document.getElementById("date_error").innerHTML="Please Enter Date.";
+				k=1;
+			}
+			else{
+				document.getElementById("date_error").innerHTML="";
+			}
+			if(description.length==0){
+				document.getElementById("description_error").innerHTML="Please Enter Description.";
+				k=1;
+			}
+			else{
+				document.getElementById("description_error").innerHTML="";
+			}
+			if(k==0){
+			return true;}
+			else{return false;}
+
+			}
+		</script>
+
+	</head>
+	<body>
+		<div class="wrapper">
+
+
+            	<div id="wizard">
+            		<!-- SECTION 1 -->
+
+
+	                <section>
+						<form  method="post"  action="{% url 'confirmfaceverification' %}" enctype="multipart/form-data">
+				{%csrf_token %}
+	                	<div class="form-header">
+	                		<div class="avartar">
+
+									<img src="{% static 'img/helpinghands_1.jpg'%}" onclick="triggerclick()"  id="profileDisplay"  alt="" class="circular--portrait">
+
+								<div class="avartar-picker">
+									<input type="file" id="profileimage"  onchange="displayimage(this)" name="profileimage" class="inputfile"  />
+									<label for="profileimage">
+										<i class="fa fa-camera"></i>
+										<span>Choose Picture</span>
+									</label>
+									</br>
+									<span id="imageprofile" style="color: red; font-size: 12px;"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="form-holder active">
+									<input type="text" placeholder="Title"  name="title" id="title" class="form-control" required >
+									<span id="title_error" style="color:red;"></span>
+								</div>
+								<div class="form-holder">
+									<input type="text" placeholder="Location" name="location" id="location" class="form-control" required>
+									<span id="location_error" style="color:red;"></span>
+								</div>
+								<div class="form-holder">
+									<input type="date" placeholder="date" name="issuedate" id="issuedate" class="form-control" required>
+									<span id="date_error" style="color:red;"></span>
+								</div>
+							</div>
+	                	</div>
+	                	<div class="form-holder">
+							<textarea  placeholder="Enter Description" class="form-control-desc" name="description" id="description" required></textarea>
+							<span id="description_error" style="color:red;"></span>
+						</div>
+
+							<button type="submit" class="btn-grad"  onclick="return validatepost();"  >Send Post</button>
+
+
+					</form>
+
+	                </section>
+
+
+            	</div>
+
+		</div>
+
+
+
+<!-- Template created and distributed by Colorlib -->
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add News</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color:#F0FFF0;">
+{%load static %}
+<script type="text/javascript">
+	    function triggerclick() {
+    document.querySelector("#profileimage").click();
+    }
+    function displayimage(e) {
+
+        var filesize = e.files[0].size / 1024 / 1024;
+
+
+        var x=document.getElementById("profileimage").value;
+        var sp=x.split(".");
+
+        if(sp[1]=='png' || sp[1]=='jpg' || sp[1]=='jpeg' || sp[1]=='PNG' || sp[1]=='JPEG' || sp[1]=='JPG'){
+            if (filesize < 8) {
+
+                     if (e.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            document.querySelector("#profileDisplay").setAttribute('src', e.target.result);
+                        }
+                        reader.readAsDataURL(e.files[0]);
+                      }
+                     document.getElementById("imageprofile").innerHTML="";
+
+            }
+            else{document.getElementById("imageprofile").innerHTML="Image must be less than 8MB";}
+
+            }
+
+
+    else{
+        document.getElementById("imageprofile").innerHTML="Please choose png or jpg or jpeg file.";
+
+    }
+
+}
+</script>
+<script>
+  function getsummary(){
+  alert("hii");
+      var description=document.getElementById('description').value;
+       var el = document.getElementsByName("csrfmiddlewaretoken");
+       csrf_value = el[0].getAttribute("value");
+       $.ajax({
+                type: 'post',
+               url: "{% url 'getsummary' %}",
+               data: {description: description, csrfmiddlewaretoken: csrf_value},
+               success: function (response) {
+                   document.getElementById('summary').value=response
+                 }
+        });
+
+  }
+</script>
+
+<div class="container">
+  <center><h2>Add News</h2></center>
+  <form  background-color="powderblue" method="post" action="{% url 'addnews' %}" enctype="multipart/form-data">
+    {%csrf_token%}
+    </br>
+    <div class="row" >
+       <div class="col-md-7">
+         <div class="form-group">
+          <label class="control-label col-sm-2" for="news_type">News Type:</label>
+          <div class="col-sm-10">
+           <select name="news_type" id="news_type"  class="form-control"  required>
+             <option value=" ">Choose News Type</option>
+             <option value="1">Sports News</option>
+             <option value="2">Technology</option>
+             <option value="3">Business</option>
+             <option value="4">Education</option>
+             <option value="5">Entertainment</option>
+
+           </select>
+          </div>
+        </div>
+       </div>
+    </div>
+    <div class="row">
+      </br>
+      <div class="col-md-7">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="title">Title:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="title" placeholder="Enter News Title" name="title" required>
+
+
+          </div>
+        </div>
+        </br></br>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="title">Image File:</label>
+          <div class="col-sm-10">
+            <input type="file" class="form-control" id="profileimage"  onchange="displayimage(this)" name="profileimage" required>
+          </div>
+          <span id="imageprofile" style="color: red; font-size: 14px;"></span>
+
+        </div>
+        <br></br>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="newsdate">Date:</label>
+          <div class="col-sm-10">
+            <input type="date" class="form-control" id="newsdate"  name="news date" required>
+          </div>
+        </div>
+        <br></br>
+        <div class="form-group">
+      <label class="control-label col-sm-2" for="location">Location:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="location" placeholder="Enter Location" name="location" required>
+      </div>
+      <br></br>
+    </div>
+
+      </div>
+      <div class="col-md-3" style="float:left;">
+        <img src="{% static 'img/default.jpg'%}"  onclick="triggerclick()"  id="profileDisplay" style="border:1px solid blue;width:200px;height:200px;">
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+      <br>
+      <div class="col-md-7">
+         <div class="form-group">
+          <label class="control-label col-sm-2" for="title">Description:</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" id="description" rows="15" placeholder="Enter News Title" onchange="getsummary();" name="description" required></textarea>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-5">
+         <div class="form-group">
+              <b>*      Summary</b>
+          <div class="col-sm-12">
+            <textarea class="form-control" id="summary" rows="14" placeholder="Auto news summary Generated" name="summary" required></textarea>
+          </div>
+        </div>
+        </br></br>
+      </div>
+      <button type="submit" class="btn btn-primary ">Add News</button>
+
+    </div>
+
+
+
+
+
+
+  </form>
+</div>
+
+</body>
+</html>

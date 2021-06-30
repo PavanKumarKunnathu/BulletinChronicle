@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>Sports News - Bulletin Chronicle</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Bootstrap Ecommerce Template" name="keywords">
+        <meta content="Bootstrap Ecommerce Template Free Download" name="description">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+{% load static %}
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link  type="text/css" rel="stylesheet" href="{% static 'lib/slick/slick.css' %}" >
+        <link  type="text/css" rel="stylesheet" href="{% static 'lib/slick/slick-theme.css' %}" >
+
+        <!-- Template Stylesheet -->
+
+        <link  type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link  type="text/css" href="{% static 'css/notifications_style.css' %}" rel="stylesheet">
+
+
+    </head>
+<body>
+    <!-- Top Header Start -->
+            <div class="top-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="logo">
+                            <a href="">
+                                <img src="{% static 'img/logo.png' %}" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4">
+                        <div class="search">
+                            <input type="text" placeholder="Search">
+                            <button><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <div class="social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook"></i></a>
+                            <a href=""><i class="fab fa-linkedin"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Header End -->
+
+
+        <!-- Header Start -->
+             <div class="header">
+            <div class="container">
+                <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                    <a href="#" class="navbar-brand">MENU</a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav m-auto">
+                            <a href="{% url 'index'   %}"  class="nav-item nav-link active">Home</a>
+                            <a  href="{% url 'sportsNews'   %}"  class="nav-item nav-link">Sports</a>
+                            <a href="{% url 'technologyNews'   %}" class="nav-item nav-link">Technology</a>
+                            <a href="{% url 'businessNews'   %}" class="nav-item nav-link">Business</a>
+                            <a href="{% url 'educationNews'   %}" class="nav-item nav-link">Education</a>
+                            <a href="{% url 'entertainmentNews'   %}" class="nav-item nav-link">Entertainment</a>
+                            <a href="{% url 'socialproblemsNews'   %}" class="nav-item nav-link">Social Problems</a>
+
+
+
+                            {% if users_details %}
+                            <div class="nav-item dropdown"  >
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" >Hi, {{users_details.username}}</a>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">Logout</a>
+
+                                </div>
+                            </div>
+                            {% else %}
+                                <a href="{% url 'login'   %}" class="nav-item nav-link">Signup/Login</a>
+                            {% endif %}
+
+                            {% if notifications %}
+                                <a href="#" class="nav-item nav-link"><button type="button" >
+                                      Notifications <span class="badge badge-success">{{notifications | length }}</span>
+                                    </button></a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Header End -->
+
+
+<!-- partial:index.partial.html -->
+            <div class="container mt-2">
+            <h2 style=" text-shadow: 2px 2px 5px red;">Notifications</h2>
+                <p>Hello <b>{{users_details.username}}</b> , These are all the persons who Accessed Your Account. Please Update Your  Password.
+                <a href="#">Change Password</a></p>
+  <div class="row" style="padding-top:1%;">
+
+      {% for i in notifiers %}
+
+    <div class="col-md-4 col-sm-6" >
+      <div class="card card-block" style="height:470px;width:320px; padding-left:10px;padding-right:10px;">
+      <h4 class="card-title text-right" style="margin-top:5px;"><i class="fa fa-cog"></i></h4>
+
+          <img src="{{i.webcamimage.url}}" />
+        <h5 class="card-title mt-3 mb-3">Anonymous Person </h5>
+
+        <p class="card-text">
+
+            <b>Host Name :</b>{{hostname}}</br>
+            <b>IpAddress:</b>{{ipaddr}}</br>
+            <b>Location:</b>Srikakulam</br>
+
+          <b>Access Date:</b> {{i.created_date|date:"d-M-Y"}}</br>
+          <b>Access Time:</b> {{i.created_date|date:"H:i:s"}}</br>
+
+        </p>
+  </div>
+    </div>
+
+      {% endfor%}
+
+
+
+
+
+    </div>
+  </div>
+
+</div>
+
+<!-- partial -->
+</body>
+  <script src='https://code.jquery.com/jquery-3.1.1.slim.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+</body>
+</html>

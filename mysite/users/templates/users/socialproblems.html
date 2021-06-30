@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>Social Problems  - Bulletin Chronicle</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Bootstrap Ecommerce Template" name="keywords">
+        <meta content="Bootstrap Ecommerce Template Free Download" name="description">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+{% load static %}
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link  type="text/css" rel="stylesheet" href="{% static 'lib/slick/slick.css' %}" >
+        <link  type="text/css" rel="stylesheet" href="{% static 'lib/slick/slick-theme.css' %}" >
+
+        <!-- Template Stylesheet -->
+        <link  type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+        <style>
+            p{
+            font-family: "Times New Roman", Times, serif;
+            font-size:18px;
+            font_weight:5px;
+
+            text-align: justify;
+          text-justify: inter-word;
+            }
+
+
+
+         .btn-grad {background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)}
+         .btn-grad {
+            float:left;
+            margin: 10px;
+            padding: 6px 15px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+          .card {
+              box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+              transition: 0.3s;
+              width: 97%;
+            }
+
+            .card:hover {
+              box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+            .date {
+                font-size: 11px
+            }
+
+            .comment-text {
+                font-size: 16px
+            }
+
+            .fs-12 {
+                font-size: 12px
+            }
+
+            .shadow-none {
+                box-shadow: none
+            }
+
+            .name {
+                color: #007bff
+            }
+
+            .cursor:hover {
+                color: blue
+            }
+
+            .cursor {
+                cursor: pointer
+            }
+
+            .textarea {
+                resize: none
+            }
+
+            #overlay{
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height:100%;
+  display: none;
+  background: rgba(0,0,0,0.6);
+}
+.cv-spinner {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px #ddd solid;
+  border-top: 4px #2e93e6 solid;
+  border-radius: 50%;
+  animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.is-hide{
+  display:none;
+}
+
+
+        </style>
+    </head>
+<body>
+    <!-- Top Header Start -->
+            <div class="top-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="logo">
+                            <a href="">
+                                <img src="{% static 'img/logo1.png' %}"   style="width:230px;" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4">
+                        <div class="search">
+                            <input type="text" placeholder="Search">
+                            <button><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <div class="social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook"></i></a>
+                            <a href=""><i class="fab fa-linkedin"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Header End -->
+
+
+        <!-- Header Start -->
+             <div class="header">
+            <div class="container">
+                <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                    <a href="#" class="navbar-brand">MENU</a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav m-auto">
+                            <a href="{% url 'index'   %}"  class="nav-item nav-link ">Home</a>
+                            <a  href="{% url 'sportsNews'   %}"  class="nav-item nav-link">Sports</a>
+                            <a href="{% url 'technologyNews'   %}" class="nav-item nav-link">Technology</a>
+                            <a href="{% url 'businessNews'   %}" class="nav-item nav-link">Business</a>
+                            <a href="{% url 'educationNews'   %}" class="nav-item nav-link">Education</a>
+                            <a href="{% url 'entertainmentNews'   %}" class="nav-item nav-link">Entertainment</a>
+                            <a href="{% url 'socialproblemsNews'   %}" class="nav-item nav-link active">Social Problems</a>
+
+
+
+                            {% if users_details %}
+                            <div class="nav-item dropdown"  >
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" >Hi, {{users_details.username}}</a>
+                                <div class="dropdown-menu">
+                                    <a href="{%  url 'user_notifications' %}" class="dropdown-item">Notifications</a>
+                                    <a href="{% url 'logout'  %}"  class="dropdown-item">Logout</a>
+
+                                </div>
+                            </div>
+                            {% else %}
+                                <a href="{% url 'login'   %}" class="nav-item nav-link">Signup/Login</a>
+                            {% endif %}
+
+                            {% if notifications %}
+                                <a href="{%  url 'user_notifications' %}" class="nav-item nav-link"><button type="button" >
+                                      Notifications <span class="badge badge-success">{{notifications | length }}</span>
+                                    </button></a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Header End -->
+
+            <!-- Breadcrumb Start -->
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="breadcrumb-wrap">
+            <div class="container-fluid" style="">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">News</a></li>
+                    <li class="breadcrumb-item active">Social Problems</li>
+                </ul>
+            </div>
+        </div>
+            </div>
+
+            <div class="col-md-4">
+                 <button  onclick=addpost() class="btn-grad" style="width:60%; padding: 6px 15px;float:right;border-radius:5px;background-image: linear-gradient(to right, #B993D6 0%, #8CA6DB  51%, #B993D6  100%)">
+                     <i class="fa fa-plus" aria-hidden="true"></i> Add Post</button></br>
+
+            </div>
+            <div class="col-md-4" style="padding-top:15px;">
+                <span id="add_post_error" style="color:red;font-size:20px;"></span>
+            </div>
+
+        </div>
+
+
+
+
+
+        <script>
+           function getNewsSummaryid(){
+
+           var description=document.getElementById('description_data').value;
+            //var sumarized_length=document.getElementById('summarized_length').value;
+           var el = document.getElementsByName("csrfmiddlewaretoken");
+           $("#myModal").modal("hide");
+            $(document).ajaxSend(function() {
+                $("#overlay").fadeIn(300);　
+              });
+
+
+
+           csrf_value = el[0].getAttribute("value");
+           $.ajax({
+                    type: 'post',
+                   url: "{% url 'getsummary' %}",
+                   data: {description: description, csrfmiddlewaretoken: csrf_value},
+                   success: function (response) {
+
+                         document.getElementById('summary_news_with_id').style.display='block';
+                         document.getElementById('full_news_with_id').style.display='none';
+
+                         document.getElementById('detailed_news_with_id').style.backgroundColor='white';
+                         document.getElementById('news_summary_with_id').style.backgroundColor='powderblue';
+
+
+                         response = response.split("\n").join("<br />")
+                       document.getElementById('summary_data').innerHTML=response;
+                       document.getElementById('summary_hidden').value=response;
+                     }
+            }).done(function() {
+      setTimeout(function(){
+        $("#overlay").fadeOut(300);
+      },500); });
+
+           }
+        </script>
+        <script>
+        function getDetailedNewsid(){
+             document.getElementById('summary_news_with_id').style.display='none';
+                         document.getElementById('full_news_with_id').style.display='block';
+
+                         document.getElementById('detailed_news_with_id').style.backgroundColor='powderblue';
+                         document.getElementById('news_summary_with_id').style.backgroundColor='white';
+        }
+
+
+    </script>
+        <script>
+            function description_langtrans(lang){
+
+            var description=document.getElementById('description_data').value;
+
+           var el = document.getElementsByName("csrfmiddlewaretoken");
+           csrf_value = el[0].getAttribute("value");
+           $(document).ajaxSend(function() {
+                $("#overlay").fadeIn(300);　
+              });
+
+           $.ajax({
+                    type: 'post',
+                   url: "{% url 'langconverter' %}",
+                   data: {a: description,l:lang, csrfmiddlewaretoken: csrf_value},
+                   success: function (response) {
+
+                        document.getElementById('summary_news_with_id').style.display='none';
+
+                         response = response.split("\n").join("<br />")
+                       document.getElementById('description_overview').innerHTML=response;
+                     }
+                   }).done(function() {
+      setTimeout(function(){
+        $("#overlay").fadeOut(300);
+      },500); });
+
+            }
+        </script>
+        <script>
+            function summary_langtrans(lang){
+
+            var description=document.getElementById('summary_hidden').value;
+
+           var el = document.getElementsByName("csrfmiddlewaretoken");
+           csrf_value = el[0].getAttribute("value");
+           $(document).ajaxSend(function() {
+                $("#overlay").fadeIn(300);　
+              });
+
+           $.ajax({
+                    type: 'post',
+                   url: "{% url 'langconverter' %}",
+                   data: {a: description,l:lang, csrfmiddlewaretoken: csrf_value},
+                   success: function (response) {
+
+                        document.getElementById('summary_news_with_id').style.display='block';
+                         document.getElementById('full_news_with_id').style.display='none';
+
+                         document.getElementById('detailed_news_with_id').style.backgroundColor='white';
+                         document.getElementById('news_summary_with_id').style.backgroundColor='powderblue';
+                         response = response.split("\n").join("<br />")
+                       document.getElementById('summary_data').innerHTML=response;
+                     }
+            }).done(function() {
+      setTimeout(function(){
+        $("#overlay").fadeOut(300);
+      },500); });
+
+            }
+        </script>
+        <script>
+            function postcomment(){
+            var comment=document.getElementById('comment').value;
+
+            }
+        </script>
+        <script>
+            function addpost(){
+                        var el = document.getElementsByName("csrfmiddlewaretoken");
+                       csrf_value = el[0].getAttribute("value");
+                       $(document).ajaxSend(function() {
+                            $("#overlay").fadeIn(200);　
+                          });
+
+                       $.ajax({
+                                type: 'post',
+                               url: "{% url 'checksessionid' %}",
+                               data: {csrfmiddlewaretoken: csrf_value},
+                               success: function (response) {
+
+                                    if(response==1){
+
+                                        document.location.href ="{% url 'addpost'  %}";
+
+                                    }
+                                    else{
+                                        document.getElementById("add_post_error").innerHTML="Login to Add Post";
+                                    }
+
+
+                                 }
+                        }).done(function() {
+                  setTimeout(function(){
+                    $("#overlay").fadeOut(200);
+                  },500); });
+
+
+            }
+        </script>
+        <script>
+            function checkprofinity(){
+
+            			var c=document.getElementById('comment').value;
+            			var comment_news_id=document.getElementById('main_news_id').value;
+            			var k=0;
+            			if(c.length==0){
+            			    document.getElementById('comment_error').innerHTML="Comment should not be null";
+            			    k=1;
+
+            			}
+                        var el = document.getElementsByName("csrfmiddlewaretoken");
+                       csrf_value = el[0].getAttribute("value");
+                       if(k==0){
+                           $(document).ajaxSend(function() {
+                                $("#overlay").fadeIn(200);　
+                              });
+
+
+                           $.ajax({
+                                    type: 'post',
+                                   url: "{% url 'checktoxiccomment' %}",
+                                   data: {csrfmiddlewaretoken: csrf_value,"c":c,"cnd":comment_news_id},
+                                   success: function (response) {
+                                   document.getElementById('comment_error').innerHTML="";
+                                        if(response.length!=0){
+                                            document.getElementById('comment_error').innerHTML=response;
+                                        }
+                                        else{
+                                            window.location.reload();                                    }
+                                     }
+                            }).done(function() {
+                      setTimeout(function(){
+                        $("#overlay").fadeOut(200);
+                      },500); });
+                }
+
+            }
+        </script>
+        <script>
+            function checksession(){
+                        var el = document.getElementsByName("csrfmiddlewaretoken");
+                       csrf_value = el[0].getAttribute("value");
+                       $(document).ajaxSend(function() {
+                            $("#overlay").fadeIn(200);　
+                          });
+
+                       $.ajax({
+                                type: 'post',
+                               url: "{% url 'checksessionid' %}",
+                               data: {csrfmiddlewaretoken: csrf_value},
+                               success: function (response) {
+
+                                    if(response==1){
+                                        checkprofinity();
+
+                                    }
+                                    else{
+                                        document.getElementById("comment_error").innerHTML="Login to Add Comment";
+                                    }
+
+
+                                 }
+                        }).done(function() {
+                  setTimeout(function(){
+                    $("#overlay").fadeOut(200);
+                  },500); });
+
+
+            }
+        </script>
+        <script>
+            function emptycomment(){
+             var comment=document.getElementById('comment').value;
+             document.getElementById('comment').value="";
+
+            }
+        </script>
+        <script>
+            function checksessionlike(){
+                        var el = document.getElementsByName("csrfmiddlewaretoken");
+                       csrf_value = el[0].getAttribute("value");
+                       $(document).ajaxSend(function() {
+                            $("#overlay").fadeIn(100);　
+                          });
+
+                       $.ajax({
+                                type: 'post',
+                               url: "{% url 'checksessionid' %}",
+                               data: {csrfmiddlewaretoken: csrf_value},
+                               success: function (response) {
+
+                                    if(response==1){
+                                        clicklikes();
+
+                                    }
+                                    else{
+                                        document.getElementById("likes_error").innerHTML="Please Login To like the Post";
+                                    }
+
+
+                                 }
+                        }).done(function() {
+                  setTimeout(function(){
+                    $("#overlay").fadeOut(100);
+                  },500); });
+
+
+            }
+        </script>
+        <script>
+            function clicklikes(){
+
+            var likes=document.getElementById('newslikes').innerHTML;
+            var news_id=document.getElementById('news_id').value;
+            var user_id=document.getElementById('user_id').value;
+
+            $.ajax({
+                                type: 'post',
+                               url: "{% url 'clicklike' %}",
+                               data: {csrfmiddlewaretoken: csrf_value,newsid:news_id,userid:user_id},
+                               success: function (response) {
+
+
+                                    if(response==1){
+                                        document.getElementById('newslikes').innerHTML=parseInt(likes)+1;
+                                        document.getElementById('heart').style.color="red";
+
+                                    }
+                                    else{
+                                    document.getElementById('newslikes').innerHTML=parseInt(likes)-1;
+                                        document.getElementById('heart').style.color="white";
+                                        }
+
+
+
+
+
+                                 }
+                        });
+
+
+            }
+        </script>
+        <script>
+        function delcmt(cid){
+            document.getElementById('comment_id_value').value=cid;
+        }
+    </script>
+        <script>
+            function deletecomment(){
+                var news_id=document.getElementById('news_id').value;
+            var user_id=document.getElementById('user_id').value;
+             var comment_id=document.getElementById('comment_id_value').value;
+            var el = document.getElementsByName("csrfmiddlewaretoken");
+                       csrf_value = el[0].getAttribute("value");
+
+            $.ajax({
+                                type: 'post',
+                               url: "{% url 'deletecomment' %}",
+                               data: {csrfmiddlewaretoken: csrf_value,newsid:news_id,userid:user_id,comment_id:comment_id},
+                               success: function (response) {
+
+
+                                    if(response==1){
+                                        $("#commentModal").modal("hide");
+                                        location.reload();
+
+                                    }
+                                    else{
+                                    $("#commentModal").modal("hide");
+                                        }
+                                 }
+                        });
+            }
+        </script>
+        <script>
+            function checksessionsupport(){
+                        var el = document.getElementsByName("csrfmiddlewaretoken");
+                       csrf_value = el[0].getAttribute("value");
+                       $(document).ajaxSend(function() {
+                            $("#overlay").fadeIn(100);　
+                          });
+
+                       $.ajax({
+                                type: 'post',
+                               url: "{% url 'checksessionid' %}",
+                               data: {csrfmiddlewaretoken: csrf_value},
+                               success: function (response) {
+
+                                    if(response==1){
+                                        supportpost();
+
+                                    }
+                                    else{
+                                        document.getElementById("support_post_error").innerHTML="Please Login To support the Post";
+                                    }
+
+
+                                 }
+                        }).done(function() {
+                  setTimeout(function(){
+                    $("#overlay").fadeOut(100);
+                  },500); });
+
+
+            }
+        </script>
+        <script>
+            function supportpost(){
+
+            var likes=document.getElementById('support_likes').innerHTML;
+            var news_id=document.getElementById('news_id').value;
+            var user_id=document.getElementById('user_id').value;
+
+            $.ajax({
+                                type: 'post',
+                               url: "{% url 'supportpost' %}",
+                               data: {csrfmiddlewaretoken: csrf_value,newsid:news_id,userid:user_id},
+                               success: function (response) {
+
+
+                                    if(response==1){
+                                        document.getElementById('support_likes').innerHTML=parseInt(likes)+1;
+                                        location.reload();
+
+
+                                    }
+                                    else{
+                                    document.getElementById('support_likes').innerHTML=parseInt(likes)-1;
+                                    location.reload();
+
+                                        }
+
+
+
+
+
+                                 }
+                        });
+
+
+            }
+        </script>
+
+    <div id="overlay">
+          <div class="cv-spinner">
+            <span class="spinner"></span>
+          </div>
+    </div>
+     <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <p>Enter Number Of line you want summarize the Text</p>
+            <input type="number" class="form-control" id="summarized_length" style="width:400px;">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn-primary"  onclick=getNewsSummaryid()>Submit</button>
+          <button type="button" class="btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+        <!-- Breadcrumb End -->
+{%csrf_token%}
+            <div class="modal fade" id="commentModal" role="dialog">
+        <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content" style="height:200px;">
+        <div class="container">
+     	 <h3 style="padding-left:130px; padding-top:10px;font-weight:bold;font-style=italic;">Delete Comment</h3>
+
+      <p style="padding-left:20px; font-size:20px;">Are you sure you want to delete your comment?</p>
+            <input type="hidden" id="comment_id_value" name="comment_id_value" />
+      <div class="btn-group" style="padding-left:3px;" >
+    <button type="button" class="btn-default" data-dismiss="modal" style="padding: 12px 90px;margin: 8px 0;">Cancel</button>
+    <button type="button" class="btn-danger"   onclick="deletecomment();" style="padding: 12px 90px;margin: 8px 0;">Delete</button>
+
+  </div>
+
+
+    </div>
+      </div>
+
+    </div>
+  </div>
+            <input type="hidden"value="{{main_news_id}}" name="news_id" id="news_id">
+            <input type="hidden" value="{{users_details.id}}" name="user_id" id="user_id">
+            <!-sports news start-->
+            {% if sport_id %}
+            <div class="single-news">
+            <div class="container-fluid">
+                <div class="row">
+                    {% for i in main_news %}
+                    <div class="col-sm-8" style="padding-left:40px;padding-top:0px;    ">
+                        <div class="sn-img" >
+                            <img src="{{i.photo.url}}" class="img-fluid" alt="{{i.caption}}" style="height:400px;">
+                        </div>
+                        <div class="sn-content" >
+                            <a class="sn-title" href="{% url 'socialproblems' i.id %}">{{i.title}}</a>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a class="sn-date" href="{% url 'socialproblems' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="sn-date" href="{% url 'socialproblems' i.id %}"><i class="far fa-envelope"></i>comments-{{comments|length}}</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="sn-date" href="{% url 'socialproblems' i.id %}"><i class="fa fa-map-marker-alt"></i>{{i.location}}</a>
+                                </div>
+                                <div class="col-md-4d" style="padding-bottom:4px;">
+                                   <button  onclick="checksessionsupport();" class="btn-grad" style="float:left;padding: 12px 22px;padding-top:10px;margin-top:0px;background-image: linear-gradient(to right, #1e3c72 0%, #2a5298  51%, #1e3c72  100%)">
+
+
+                                    {% if supported %}
+                                <i class="fa fa-hand-holding-heart" ></i> TQ For Support - <span id="support_likes">{{news_support}}</span></button></br></br>
+                                {% else %}
+                                <i class="fa fa-fist-raised"></i> I Support - <span id="support_likes">{{news_support}}</span></button></br></br>
+                                {% endif %}
+                                    </br> <span id="support_post_error"></span>
+                                </div>
+
+                            </div>
+
+                             <div class="card" style="margin-left:10px;">
+                                <div class="row">
+                                    <div class="col-6" id="detailed_news_with_id" style="background-color:powderblue;" onclick=getDetailedNewsid()>
+                                        <center><p><h5>Detailed News</h5></p></center>
+                                        <input type="hidden" value="{{i.description}}" name="description_data" id="description_data">
+                                    </div>
+
+                                     <div class="col-6"    onclick=getNewsSummaryid() id="news_summary_with_id" >
+
+                                        <center><p><h5>News Summary</h5></p></center>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row" id="full_news_with_id"  style="padding-left:20px;">
+                                </br>
+                                <div class="row">
+
+                                    <div class="col-md-3" style="padding-top:20px;"><h5><b>Available Languages</b></h5></div>
+                                    <div class="col-md-9" style="padding-right:30px;">
+                                        <button class="btn-grad" onclick=description_langtrans('en')>english</button>
+                                        <button class="btn-grad" onclick=description_langtrans('te')>Telugu</button>
+                                        <button class="btn-grad" onclick=description_langtrans('hi')>Hindi</button>
+                                        <button class="btn-grad" onclick=description_langtrans('ta')>Tamil</button>
+
+                                        <select   class="form-control" onchange="description_langtrans(this.value)" style="margin-top:14px;width:200px;" >
+                                            <option value="en">select Language</option>
+                                            {% for  key, value in lang_list.items  %}
+
+                                            <option value="{{key}}">{{value}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-body">
+                                             <p id="description_overview">
+                                                {{i.description|linebreaks}}
+                                                </p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="row" id="summary_news_with_id" style="display:none;padding-left:20px;">
+                                    </br>
+                                <div class="row">
+                                    <input type="hidden" value="" id="summary_hidden" name="summary_hidden">
+                                    <div class="col-md-3" style="padding-top:20px;"><h5><b>Available Languages</b></h5></div>
+                                    <div class="col-md-9" style="padding-right:30px;">
+                                        <button class="btn-grad" onclick=summary_langtrans('en')>english</button>
+                                        <button class="btn-grad" onclick=summary_langtrans('te')>Telugu</button>
+                                        <button class="btn-grad" onclick=summary_langtrans('hi')>Hindi</button>
+                                        <button class="btn-grad" onclick=summary_langtrans('ta')>Tamil</button>
+                                        <select   class="form-control" onchange="summary_langtrans(this.value)" style="margin-top:14px;width:200px;" >
+                                            <option value="en">select Language</option>
+                                            {% for  key, value in lang_list.items  %}
+
+                                            <option value="{{key}}">{{value}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-body">
+                                             <p id="summary_data">
+
+                                                </p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="row" >
+                            <div class="col-md-5"></div>
+                            <div class="col=md-6">
+                                <button  onclick="checksessionlike();"  class="btn-grad" style="padding: 10px 35px;background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);">
+                                {% if liked %}
+                                <i class="fa fa-heart"  id="heart" style="color:red;"></i>
+                                {% else %}
+                                 <i class="fa fa-heart"  id="heart" ></i>
+                                {% endif %}
+
+                                Like - <span id="newslikes">{{news_likes}}</span> </button>
+                            </div>
+
+                        </div>
+                         <center><span id="likes_error" style="color:red;"></span></center>
+                        <h4><b>comments({{comments | length}})</b></h4>
+
+                        <div class="container mt-12">
+                        <div class="  row">
+                                <div class="col-md-12" >
+                                    <div class="d-flex flex-column comment-section">
+                                        {% for x in comments %}
+                                        <div class="bg-white p-2">
+
+                                            {% ifequal  x.id users_details.id %}
+                                                <div class="d-flex flex-row user-info"><img class="rounded-circle" src={{x.photo.url }} width="40">
+                                                <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">{{x.username}} <span id="delete_comment" onclick=delcmt({{x.commentid}})  data-toggle="modal" data-target="#commentModal""><i class="fa fa-trash"  style="color:red;font-size:12px;"></i></span></span>
+
+                                                    <span class="date text-black-50">Shared publicly - {{x.created_date|date:" d  M Y"}}</span>
+
+                                                </div>
+                                            </div>
+                                            {% else %}
+                                                <div class="d-flex flex-row user-info"><img class="rounded-circle" src={{x.photo.url }} width="40">
+                                                <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">{{x.username}}</span>
+                                                    <span class="date text-black-50">Shared publicly - {{x.created_date|date:" d  M Y"}}</span>
+                                                </div>
+                                            </div>
+                                            {% endifequal %}
+
+                                            <div class="mt-2">
+                                                <p class="comment-text">{{x.comment}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="bg-white">
+                                            <div class="d-flex flex-row fs-12">
+                                                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
+                                                <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
+                                                <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="bg-light p-2">
+                                            <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="{{users_details.photo.url}}" width="40">
+
+                                                <textarea class="form-control ml-1 shadow-none textarea"  id="comment" name="comment" placeholder="post Comment..."></textarea></div>
+                                            <span  id="comment_error" style="color:red;"></span>
+                                             <input type="hidden" value="{{main_news_id}}" id="main_news_id" />
+                                            <div class="mt-2 text-right"><button class="btn-primary btn-sm shadow-none"  onclick=checksession() type="button">Post comment</button>
+                                                <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" onclick=emptycomment() type="button" >Cancel</button></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                    <div class="col-md-4">
+                                <div class="sidebar">
+
+                                    <div class="sidebar-widget">
+
+                                        <h2><i class="fas fa-align-justify"></i>Social Problems</h2>
+                                    </div>
+                                </div>
+
+                                <div class="top-news"  style="margin-top:0px;padding:0px 1px 2px;">
+                                    <div class="container-fluid">
+                                        {% for i in flash_news %}
+                                        <div class="tn-img">
+                                            <img src="{{i.photo.url}}" class="img-fluid" alt="{{i.caption}}" style="height:250px;">
+                                                <div class="tn-content">
+                                                        <div class="tn-content-inner">
+
+                                                                <a class="tn-date" href="{% url 'socialproblems' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                                                <a class="tn-title" href="{% url 'socialproblems' i.id %}">{{i.title}}</a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        </br>
+
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </br>
+
+            {% else %}
+             <div class="single-news">
+            <div class="container-fluid">
+                <div class="row">
+                    {% for i in main_sports %}
+                    <div class="col-sm-8" style="padding-left:40px;padding-top:0px;    ">
+                        <div class="sn-img" >
+                            <img src="{{i.photo.url}}" class="img-fluid" alt="{{i.caption}}" style="height:400px;">
+                        </div>
+                        <div class="sn-content" >
+                            <a class="sn-title" href="{% url 'socialproblems' i.id %}">{{i.title}}</a>
+                           <div class="row">
+                                <div class="col-md-2">
+                                    <a class="sn-date" href="{% url 'socialproblems' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="sn-date" href="{% url 'socialproblems' i.id %}"><i class="far fa-envelope"></i>comments-{{comments|length}}</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="sn-date" href="{% url 'socialproblems' i.id %}"><i class="fa fa-map-marker-alt"></i>{{i.location}}</a>
+                                </div>
+                               <div class="col-md-4" style="padding-bottom:4px;">
+
+                                    <button  onclick="checksessionsupport();" class="btn-grad" style="float:left;padding: 12px 22px;padding-top:10px;margin-top:0px;background-image: linear-gradient(to right, #1e3c72 0%, #2a5298  51%, #1e3c72  100%)">
+
+
+                                    {% if supported %}
+                                <i class="fas fa-hand-holding-heart"></i> Tq For support  - <span id="support_likes">{{news_support}}</span></button></br></br>
+                                {% else %}
+                                <i class="fa fa-fist-raised"></i> I Support - <span id="support_likes">{{news_support}}</span></button></br></br>
+                                {% endif %}
+                                   </br><span id="support_post_error" style="color:red;"></span>
+<!--                                    <i class="fa fa-handshake"></i>-->
+                               </div>
+
+
+                            </div>
+                             <div class="card" style="margin-left:10px;">
+                                <div class="row">
+                                    <div class="col-6" id="detailed_news_with_id" style="background-color:powderblue;" onclick=getDetailedNewsid()>
+                                        <center><p><h5>Detailed News</h5></p></center>
+                                        <input type="hidden" value="{{i.description}}" name="description_data" id="description_data">
+                                    </div>
+
+                                     <div class="col-6"   onclick=getNewsSummaryid() id="news_summary_with_id" >
+
+                                        <center><p><h5>News Summary</h5></p></center>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row" id="full_news_with_id"  style="padding-left:20px;">
+                                </br>
+                                <div class="row">
+
+                                    <div class="col-md-3" style="padding-top:20px;"><h5><b>Available Languages</b></h5></div>
+                                    <div class="col-md-9" style="padding-right:30px;">
+                                        <button class="btn-grad" onclick=description_langtrans('en')>english</button>
+                                        <button class="btn-grad" onclick=description_langtrans('te')>Telugu</button>
+                                        <button class="btn-grad" onclick=description_langtrans('hi')>Hindi</button>
+                                        <button class="btn-grad" onclick=description_langtrans('ta')>Tamil</button>
+
+                                        <select   class="form-control" onchange="description_langtrans(this.value)" style="margin-top:14px;width:200px;" >
+                                            <option value="en">select Language</option>
+                                            {% for  key, value in lang_list.items  %}
+
+                                            <option value="{{key}}">{{value}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-body">
+                                             <p id="description_overview">
+                                                {{i.description|linebreaks}}
+                                                </p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="row" id="summary_news_with_id" style="display:none;padding-left:20px;">
+                                    </br>
+                                <div class="row">
+                                    <input type="hidden" value="" id="summary_hidden" name="summary_hidden">
+                                    <div class="col-md-3" style="padding-top:20px;"><h5><b>Available Languages</b></h5></div>
+                                    <div class="col-md-9" style="padding-right:30px;">
+                                        <button class="btn-grad" onclick=summary_langtrans('en')>english</button>
+                                        <button class="btn-grad" onclick=summary_langtrans('te')>Telugu</button>
+                                        <button class="btn-grad" onclick=summary_langtrans('hi')>Hindi</button>
+                                        <button class="btn-grad" onclick=summary_langtrans('ta')>Tamil</button>
+                                        <select   class="form-control" onchange="summary_langtrans(this.value)" style="margin-top:14px;width:200px;" >
+                                            <option value="en">select Language</option>
+                                            {% for  key, value in lang_list.items  %}
+
+                                            <option value="{{key}}">{{value}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-body">
+                                             <p id="summary_data">
+
+                                                </p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="row" >
+                            <div class="col-md-5"></div>
+                            <div class="col=md-6">
+                                <button  onclick="checksessionlike();"  class="btn-grad" style="padding: 10px 35px;background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);">
+                                {% if liked %}
+                                <i class="fa fa-heart"  id="heart" style="color:red;"></i>
+                                {% else %}
+                                 <i class="fa fa-heart"  id="heart" ></i>
+                                {% endif %}
+
+                                Like - <span id="newslikes">{{news_likes}}</span> </button>
+                            </div>
+
+                        </div>
+                         <center><span id="likes_error" style="color:red;"></span></center>
+                        <h4><b>comments({{comments | length}})</b></h4>
+                        <div class="container mt-12">
+                        <div class="  row">
+                                <div class="col-md-12" >
+                                    <div class="d-flex flex-column comment-section">
+                                        {% for x in comments %}
+                                        <div class="bg-white p-2">
+
+                                            {% ifequal  x.id users_details.id %}
+                                                <div class="d-flex flex-row user-info"><img class="rounded-circle" src={{x.photo.url }} width="40">
+                                                <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">{{x.username}} <span id="delete_comment" onclick=delcmt({{x.commentid}})  data-toggle="modal" data-target="#commentModal""><i class="fa fa-trash"  style="color:red;font-size:12px;"></i></span></span>
+
+                                                    <span class="date text-black-50">Shared publicly - {{x.created_date|date:" d  M Y"}}</span>
+
+                                                </div>
+                                            </div>
+                                            {% else %}
+                                                <div class="d-flex flex-row user-info"><img class="rounded-circle" src={{x.photo.url }} width="40">
+                                                <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">{{x.username}}</span>
+                                                    <span class="date text-black-50">Shared publicly - {{x.created_date|date:" d  M Y"}}</span>
+                                                </div>
+                                            </div>
+                                            {% endifequal %}
+
+                                            <div class="mt-2">
+                                                <p class="comment-text">{{x.comment}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="bg-white">
+                                            <div class="d-flex flex-row fs-12">
+                                                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
+                                                <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
+                                                <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="bg-light p-2">
+                                            <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="{{users_details.photo.url}}" width="40">
+
+                                                <textarea class="form-control ml-1 shadow-none textarea"  id="comment" name="comment" placeholder="post Comment..."></textarea></div>
+                                            <span  id="comment_error" style="color:red;"></span>
+                                             <input type="hidden" value="{{main_news_id}}" id="main_news_id" />
+                                            <div class="mt-2 text-right"><button class="btn-primary btn-sm shadow-none"  onclick=checksession() type="button">Post comment</button>
+                                                <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" onclick=emptycomment() type="button" >Cancel</button></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <div class="col-md-4">
+
+                                <div class="sidebar">
+
+                                    <div class="sidebar-widget">
+                                         <h2><i class="fas fa-align-justify"></i>Social Problems</h2>
+                                    </div>
+                                </div>
+
+                                <div class="top-news"  style="margin-top:0px;padding:0px 1px 2px;">
+                                    <div class="container-fluid">
+                                        {% for i in side_news %}
+                                        <div class="tn-img">
+                                            <img src="{{i.photo.url}}" class="img-fluid" alt="{{i.caption}}" style="height:250px;">
+                                                <div class="tn-content">
+                                                        <div class="tn-content-inner">
+
+                                                                <a class="tn-date" href="{% url 'socialproblems' i.id %}"><i class="far fa-clock"></i>{{i.news_date|date:"d-M-Y"}}</a>
+                                                                <a class="tn-title" href="{% url 'socialproblems' i.id %}">{{i.title}}</a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        </br>
+
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {% endif %}
+
+            <!--end sports news start-->
+             <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+        <script src="{% static 'lib/slick/slick.min.js' %}"></script>
+            <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
