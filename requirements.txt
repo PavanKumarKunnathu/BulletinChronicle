@@ -108,6 +108,5 @@ virtualenv==20.4.7
 wasabi==0.8.2
 Werkzeug==2.0.0
 whitenoise==5.2.0
-WMI==1.5.1
 wrapt==1.12.1
 xmltodict==0.12.0
